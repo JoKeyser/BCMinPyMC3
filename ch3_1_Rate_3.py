@@ -24,7 +24,7 @@ k2, n2 = 7, 10
 model = pm.Model()
 
 with model:
-    # Prior on Rates
+    # Prior on single rate
     theta = pm.Beta('theta', alpha=1, beta=1)
     # Observed Counts
     k1 = pm.Binomial('k1', p=theta, n=n1, observed=k1)

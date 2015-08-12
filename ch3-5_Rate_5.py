@@ -38,7 +38,7 @@ axs[0][0].set_xlim([0,1]) # manually set x-limits for comparisons
 
 #FIXME: recreate the nice density plot from figure 3.11
 #FIXME: add actual data point (0,10) into plot
-pred = np.array([traces['postPredK1'].flatten(1), traces['postPredK2']])
+pred = np.array([traces['postPredK1'], traces['postPredK2']])
 pred = pred.transpose()
 labels = ('Success Count 1', 'Success Count 2')
 df = pd.DataFrame(pred, columns=labels)

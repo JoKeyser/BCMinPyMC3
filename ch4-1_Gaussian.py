@@ -8,6 +8,7 @@ Created Aug/2015 by Johannes Keyser <j.keyser@donders.ru.nl>
 
 import pymc3 as pm
 import numpy as np
+import pandas as pd
 
 x = np.array([1.1, 1.9, 2.3, 1.8])
 
@@ -25,4 +26,11 @@ with model:
     Nchains = 4
     traces = pm.sample(Nsample, step=stepFunc, njobs=Nchains)
 
-axs = pm.traceplot(traces, vars=['mu','sigma'], combined=False)
+plotVars = ('mu','sigma')
+axs = pm.traceplot(traces, vars=plotVars, combined=False)
+# plot joint posterior samples
+tstr = 'Joint posterior samples'
+post = np.vstack([traces['mu'], traces['sigma']])
+post = post.transpose()
+df = pd.DataFrame(post, columns=plotVars)
+ax = df.plot(kind='scatter', x=plotVars[0], y=plotVars[1], alpha=.1, title=tstr)
